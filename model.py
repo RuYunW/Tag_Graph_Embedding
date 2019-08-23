@@ -8,9 +8,9 @@ from utils import load_data,LSTM
 x = load_data()
 order = []  # 创建一个空集合
 K = 5
+h = []
 
-
-h[m][0] = x[m]
+h[:][0] = x[:]
 for k in range(K):  # hop数  K
     for m in range(len(x)):  # 节点个数  M
         h[][k] = Virtualized()

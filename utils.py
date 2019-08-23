@@ -7,6 +7,7 @@ def load_data(cites_path = './data/cora.cites',content_path = './data/cora.conte
         etc……
         '''
     x = []
+    return x
 
 
 def LSTM():
