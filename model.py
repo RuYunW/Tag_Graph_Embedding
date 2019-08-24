@@ -7,15 +7,14 @@ from utils import load_data
 # Initialize
 x = load_data()
 order = []  # 创建一个空集合
-K = 5
-h = [[] for i in range(K+1)]
+K = 5  # hops
+h = [[] for i in range(K+1)]  # temp matrices
 # print(h)
 # print(x[0][0])  # [[0,...,0],[...],...,[...]]
 for i in x:
     h[0].append(i)
-# print(h[0])
 
-print(len(h[0]))  # len(h[0]=2708)
+# len(h[]=2708) = n(node)   len(h[][] = 1433) = n(words) -- feature matrices
 
 # for k in range(K):  # hop数  K
 #     for m in range(len(x)):  # 节点个数  M
