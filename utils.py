@@ -25,5 +25,35 @@ def load_data(cites_path = './data/cora.cites',content_path = './data/cora.conte
 
 # def LSTM():
 
+def node_garthing(x,cites,content,class_set):
+    temp_frontnode = []
+    temp_frontcode = []
+    front_node = []
+    front_code = []
+    temp = []
+    # pure_code = []
+
+    for node_id in np.array(x)[:, 0]:  # content第一列顺序
+        for line in cites:
+            if line[1] == node_id:
+                temp_frontnode.append(line[0])
+
+        for cls in class_set:
+            for line in content:
+                if line[0] in temp_frontnode and line[-1] == cls:
+                    temp.append(list(map(int,line[1:-1])))
+        temp_frontcode.append(temp)
+
+        temp = []
+
+        front_node.append(temp_frontnode)
+        front_code += temp_frontcode
+        # pure_code += temp_frontcode[1:-1]
+
+        temp_frontnode = []
+        temp_frontcode = []
+
+    return front_code
+
 def Virtualized():
     pass
