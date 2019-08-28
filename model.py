@@ -2,7 +2,7 @@
 Tag-graph embedding generation algorithm
 '''
 
-from utils import load_data,node_garthing
+from utils import *
 import numpy as np
 from numpy import *
 
@@ -14,28 +14,20 @@ h = [[] for i in range(K+1)]  # temp matrices
 # print(x[0][0])  # [[0,...,0],[...],...,[...]]
 
 h[0]+=x[:]
-front_code = node_garthing(x,cites,content,class_set)
+front_code = front_node_garthing(x,cites,content,class_set)
+behind_code = behind_node_garthing(x,cites,content,class_set)
+
 
 temp = []
 emb = []
+ave_front_code = ave(front_code)
+ave_behind_code = ave(behind_code)
 
-
-
-
-# print(type(front_code[0][0][0]))
-ave_node = []
-___ = []
-for i in front_code:  # each node
-    for j in i:  # each class
-        if len(j) >2:
-            ___.append(np.sum([k for k in j],axis=0)/len(j))
-        else:
-            ___.append(j)
-    ave_node.append(___)
-
-
+for i in ave_behind_code:
+    print(i)
 # len(h[]=2708) = n(node)   len(h[][] = 1433) = n(words) -- feature matrices
-
+# h_front = []
+# h_behind = []
 # for k in range(K):  # hop数  K
 #     for m in range(len(x)):  # 节点个数  M
 #         h[][k] = Virtualized()
