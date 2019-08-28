@@ -23,15 +23,24 @@ emb = []
 ave_front_code = ave(front_code)
 ave_behind_code = ave(behind_code)
 
-for i in ave_behind_code:
-    print(i)
+
+
+
+
 # len(h[]=2708) = n(node)   len(h[][] = 1433) = n(words) -- feature matrices
-# h_front = []
-# h_behind = []
+h_front = ave(front_node_garthing(x,cites,content,class_set))
+h_behind = ave(behind_node_garthing(x,cites,content,class_set))
+
+h = ave(h_front_cal(x,cites,content,class_set,h_front))
+
+for i in h:
+    print(i)
+print(len(h))
 # for k in range(K):  # hop数  K
+#     h_front += ave(front_node_garthing(x, cites, content, class_set))
+#     h_behind += ave(behind_node_garthing(x, cites, content, class_set))
+#
 #     for m in range(len(x)):  # 节点个数  M
-#         h[][k] = Virtualized()
-#         h[][k] = Virtualized()
 #         order = h[][k] + h[][k]
 #         for u in order:
 #              h[][] = LSTM(h[][])

@@ -59,11 +59,10 @@ def ave(front_code):
     ave_code = []
     ___ = []
     for i in front_code:  # each node
-        for j in i:  # each class
-            if len(j) > 2:
-                ___.append(np.sum([k for k in j], axis=0) / len(j))
-            else:
-                ___.append(j)
+        if len(i) >= 1:
+            ___ += list(np.sum([k for k in i], axis=0) / len(i))
+        else:
+            ___ += []
         ave_code.append(___)
         ___ = []
 
@@ -97,6 +96,38 @@ def behind_node_garthing(x,cites,content,class_set):
         temp_behindcode = []
 
     return behind_code
+
+def h_front_cal(x,cites,content,class_set,h_front):
+    temp_frontnode = []
+    temp_frontcode = []
+    front_node = []
+    front_code = []
+    temp = []
+    # pure_code = []
+
+    for node_id in np.array(x)[:, 0]:  # content第一列顺序
+        for line in cites:
+            if line[1] == node_id:
+                temp_frontnode.append(line[0])
+
+        for cls in class_set:
+            counter = 0
+            for line in content:
+                if line[0] in temp_frontnode and line[-1] == cls and len(h_front[counter])>=1:
+                    temp.append(h_front[counter])
+                counter += 1
+        temp_frontcode.append(temp)
+
+        temp = []
+
+        front_node.append(temp_frontnode)
+        front_code += temp_frontcode
+        # pure_code += temp_frontcode[1:-1]
+
+        temp_frontnode = []
+        temp_frontcode = []
+
+    return front_code
 
 
 def Virtualized():
