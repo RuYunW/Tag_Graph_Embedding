@@ -37,14 +37,15 @@ def front_node_garthing(x,cites,content,class_set):
         for line in cites:
             if line[1] == node_id:
                 temp_frontnode.append(line[0])
+        # 找到所有前序节点temp_frontnode
 
         for cls in class_set:
             for line in content:
                 if line[0] in temp_frontnode and line[-1] == cls:
                     temp.append(list(map(int,line[1:-1])))
-        temp_frontcode.append(temp)
-
-        temp = []
+            # 节点node某一cls的所有code存入temp
+            temp_frontcode.append([temp])
+            temp = []
 
         front_node.append(temp_frontnode)
         front_code += temp_frontcode
@@ -59,12 +60,15 @@ def ave(front_code):
     ave_code = []
     ___ = []
     for i in front_code:  # each node
-        if len(i) >= 1:
-            ___ += list(np.sum([k for k in i], axis=0) / len(i))
-        else:
-            ___ += []
+        for j in i:  # each class
+            # ___ is used to save one class ave value
+            if len(j) >= 1:
+                ___.append((np.sum([k for k in j],axis=0)/len(j)).tolist())
+        # each class ave has been calculated, saving in ___
         ave_code.append(___)
         ___ = []
+
+
 
     return ave_code
 
