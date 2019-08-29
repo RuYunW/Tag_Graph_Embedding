@@ -27,14 +27,15 @@ h_front = summ(ave(front_node_garthing(x,cites,content,class_set)),x)
 h_behind = summ(ave(behind_node_garthing(x,cites,content,class_set)),x)
 # h = ave(h_front_cal(x,cites,content,class_set,h_front))
 #
-for i in h_front:
-    print(i)
-print(len(h_front))
+# for i in h_front:
+#     print(i)
+# print(len(h_front))
 # exit(0)
 order_set = []
 M = len(x[:])
 # h_sum = sum(h_front)
 for k in range(1,K+1):  # hop数  K
+
     h_front.append(summ(ave(h_front_cal(x, cites, content, class_set,h_front[k-1])),x))
     h_behind.append(summ(ave(h_behind_cal(x, cites, content, class_set,h_behind[k-1])),x))
     temp = []

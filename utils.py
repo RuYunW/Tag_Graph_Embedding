@@ -113,19 +113,20 @@ def h_front_cal(x,cites,content,class_set,h_front):
         for line in cites:
             if line[1] == node_id:
                 temp_frontnode.append(line[0])
+        # 找到所有前序节点temp_frontnode
 
         for cls in class_set:
-            counter = 0
             for line in content:
+                counter = 0
                 if line[0] in temp_frontnode and line[-1] == cls:
                     temp.append(h_front[counter])
                 counter += 1
-        temp_frontcode.append(temp)
-
-        temp = []
+            # 节点node某一cls的所有code存入temp
+            temp_frontcode.append(temp)
+            temp = []
 
         front_node.append(temp_frontnode)
-        front_code += temp_frontcode
+        front_code.append(temp_frontcode)
         # pure_code += temp_frontcode[1:-1]
 
         temp_frontnode = []
@@ -138,7 +139,7 @@ def summ(h,x):
     __ = []
     for i in h:
         if len(i) >= 1:
-            __.append(list(np.sum([j for j in i],axis=0)))
+            __.append(np.sum([ j for j in i],axis=0).tolist())
         else:
             __.append([0 for _ in range(len(x))])  # 空用0填补
     # sum each vir_class code within one
@@ -156,18 +157,20 @@ def h_behind_cal(x,cites,content,class_set,h_behind):
         for line in cites:
             if line[0] == node_id:
                 temp_behindnode.append(line[1])
+        # 找到所有前序节点temp_frontnode
 
         for cls in class_set:
-            counter = 0
             for line in content:
-                if line[0] in temp_behindnode and line[-1] == cls and len(h_behind[counter]) >= 1:
+                counter = 0
+                if line[0] in temp_behindnode and line[-1] == cls:
                     temp.append(h_behind[counter])
                 counter += 1
-        temp_behindcode.append(temp)
-        temp = []
+            # 节点node某一cls的所有code存入temp
+            temp_behindcode.append(temp)
+            temp = []
 
         behind_node.append(temp_behindnode)
-        behind_code += temp_behindcode
+        behind_code.append(temp_behindcode)
         # pure_code += temp_frontcode[1:-1]
 
         temp_behindnode = []
