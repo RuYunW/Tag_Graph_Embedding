@@ -117,7 +117,7 @@ def h_front_cal(x,cites,content,class_set,h_front):
         for cls in class_set:
             counter = 0
             for line in content:
-                if line[0] in temp_frontnode and line[-1] == cls and len(h_front[counter])>=1:
+                if line[0] in temp_frontnode and line[-1] == cls:
                     temp.append(h_front[counter])
                 counter += 1
         temp_frontcode.append(temp)
@@ -134,15 +134,15 @@ def h_front_cal(x,cites,content,class_set,h_front):
     return front_code
 
 
-def sum(h):
-    _ = []
+def summ(h,x):
+    __ = []
     for i in h:
         if len(i) >= 1:
-            _.append(list(np.sum([j for j in i],axis=0)))
+            __.append(list(np.sum([j for j in i],axis=0)))
         else:
-            _.append([])
+            __.append([0 for _ in range(len(x))])  # 空用0填补
     # sum each vir_class code within one
-    return _
+    return __
 
 def h_behind_cal(x,cites,content,class_set,h_behind):
     temp_behindnode = []
@@ -160,7 +160,7 @@ def h_behind_cal(x,cites,content,class_set,h_behind):
         for cls in class_set:
             counter = 0
             for line in content:
-                if line[0] in temp_behindnode and line[-1] == cls and len(h_front[counter]) >= 1:
+                if line[0] in temp_behindnode and line[-1] == cls and len(h_behind[counter]) >= 1:
                     temp.append(h_behind[counter])
                 counter += 1
         temp_behindcode.append(temp)
@@ -177,4 +177,7 @@ def h_behind_cal(x,cites,content,class_set,h_behind):
 
 
 def Virtualized():
+    pass
+
+def lstm(h):
     pass
