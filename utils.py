@@ -134,16 +134,47 @@ def h_front_cal(x,cites,content,class_set,h_front):
     return front_code
 
 
-def sum(list):
+def sum(h):
     _ = []
-    # print(len(list))
-    for i in list:
-        # if len(i) >= 1:
-        _.append((np.sum([j for j in i],axis=0)).tolist())
-        # else:
-            # _.append([])
+    for i in h:
+        if len(i) >= 1:
+            _.append(list(np.sum([j for j in i],axis=0)))
+        else:
+            _.append([])
     # sum each vir_class code within one
     return _
+
+def h_behind_cal(x,cites,content,class_set,h_behind):
+    temp_behindnode = []
+    temp_behindcode = []
+    behind_node = []
+    behind_code = []
+    temp = []
+    # pure_code = []
+
+    for node_id in np.array(x)[:, 0]:  # content第一列顺序
+        for line in cites:
+            if line[0] == node_id:
+                temp_behindnode.append(line[1])
+
+        for cls in class_set:
+            counter = 0
+            for line in content:
+                if line[0] in temp_behindnode and line[-1] == cls and len(h_front[counter]) >= 1:
+                    temp.append(h_behind[counter])
+                counter += 1
+        temp_behindcode.append(temp)
+        temp = []
+
+        behind_node.append(temp_behindnode)
+        behind_code += temp_behindcode
+        # pure_code += temp_frontcode[1:-1]
+
+        temp_behindnode = []
+        temp_behindcode = []
+
+    return behind_code
+
 
 def Virtualized():
     pass

@@ -30,20 +30,19 @@ emb = []
 h_front = ave(front_node_garthing(x,cites,content,class_set))
 h_behind = ave(behind_node_garthing(x,cites,content,class_set))
 
-h = ave(h_front_cal(x,cites,content,class_set,h_front))
+# h = ave(h_front_cal(x,cites,content,class_set,h_front))
 
-h_sum = sum(h)
 
-# for i in h_sum:
-#     print(i)
-# print(len(h_sum))
-# for k in range(K):  # hop数  K
-#     h_front += ave(front_node_garthing(x, cites, content, class_set))
-#     h_behind += ave(behind_node_garthing(x, cites, content, class_set))
-#
-#     for m in range(len(x)):  # 节点个数  M
-#         order = h[][k] + h[][k]
-#         for u in order:
-#              h[][] = LSTM(h[][])
-#         h[][] = Sigma()
-# z[] = h[][]
+
+order_set = []
+h = []
+# h_sum = sum(h_front)
+for k in range(K):  # hop数  K
+    h_front.append(sum(ave(h_front_cal(x, cites, content, class_set,h_front[k]))))
+    h_behind.append(sum(ave(h_behind_cal(x, cites, content, class_set,h_behind[k]))))
+    order_set.append(h_front[k+1]+h_behind[k+1])  # 拼接
+    for u in order_set[k]:  # 节点个数  M
+        h.append()
+
+
+z[] = h[][]
