@@ -18,19 +18,27 @@ front_code = front_node_garthing(x,cites,content,class_set)
 behind_code = behind_node_garthing(x,cites,content,class_set)
 
 
+# print(len(front_code))
+
+
 temp = []
 emb = []
-ave_front_code = ave(front_code)
-ave_behind_code = ave(behind_code)
+# ave_front_code = ave(front_code)
+# ave_behind_code = ave(behind_code)
 
 # len(h[]=2708) = n(node)   len(h[][] = 1433) = n(words) -- feature matrices
 h_front = ave(front_node_garthing(x,cites,content,class_set))
 h_behind = ave(behind_node_garthing(x,cites,content,class_set))
 
-h = ave(h_front_cal(x,cites,content,class_set,h_front))
 
+h = ave(h_front_cal(x,cites,content,class_set,h_front))
+print(len(h))
 for i in h:
     print(i)
+# for i in h:
+#     print(len(i))
+print(len(h))
+print(len(h_front))
 
 # for k in range(K):  # hop数  K
 #     h_front += ave(front_node_garthing(x, cites, content, class_set))

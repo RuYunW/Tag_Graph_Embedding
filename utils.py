@@ -44,11 +44,11 @@ def front_node_garthing(x,cites,content,class_set):
                 if line[0] in temp_frontnode and line[-1] == cls:
                     temp.append(list(map(int,line[1:-1])))
             # 节点node某一cls的所有code存入temp
-            temp_frontcode.append([temp])
+            temp_frontcode.append(temp)
             temp = []
 
         front_node.append(temp_frontnode)
-        front_code += temp_frontcode
+        front_code.append(temp_frontcode)
         # pure_code += temp_frontcode[1:-1]
 
         temp_frontnode = []
@@ -67,8 +67,6 @@ def ave(front_code):
         # each class ave has been calculated, saving in ___
         ave_code.append(___)
         ___ = []
-
-
 
     return ave_code
 
@@ -133,6 +131,10 @@ def h_front_cal(x,cites,content,class_set,h_front):
 
     return front_code
 
+
+# def sum(list):
+#     for i in list:
+#
 
 def Virtualized():
     pass
