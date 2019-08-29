@@ -30,16 +30,13 @@ emb = []
 h_front = ave(front_node_garthing(x,cites,content,class_set))
 h_behind = ave(behind_node_garthing(x,cites,content,class_set))
 
-
 h = ave(h_front_cal(x,cites,content,class_set,h_front))
-print(len(h))
-for i in h:
-    print(i)
-# for i in h:
-#     print(len(i))
-print(len(h))
-print(len(h_front))
 
+h_sum = sum(h)
+
+# for i in h_sum:
+#     print(i)
+# print(len(h_sum))
 # for k in range(K):  # hop数  K
 #     h_front += ave(front_node_garthing(x, cites, content, class_set))
 #     h_behind += ave(behind_node_garthing(x, cites, content, class_set))
