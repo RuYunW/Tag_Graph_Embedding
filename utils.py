@@ -1,6 +1,6 @@
 import numpy as np
 # from model import *
-from keras.layers import LSTM,Dense,Dropout
+from keras.layers import LSTM,Dense,Dropout,Embedding
 from keras.models import Sequential
 
 def load_data(cites_path = './data/cora.cites',content_path = './data/cora.content'):
@@ -183,16 +183,18 @@ def h_behind_cal(x,cites,content,class_set,h_behind):
 
 def build_model():
     model = Sequential()
-    model.add(LSTM(output_dim=32,
+    model.add(Embedding(input_dim=2866,output_dim=128,input_length=2866))
+    model.add(LSTM(units=256,
+                   # output_dim=128,
                    return_sequences=True,
-                   input_shape=(2708,2866),
-                   activation='relu'
+                   # input_shape=(2708,1,2866),
+                   # activation='relu'
                    ))
-    for i in range(3):
-        model.add(LSTM(output_dim=32 * (i + 1),
-                       activation='relu',
-                       return_sequences=True
-                       ))
+    # for i in range(3):
+    #     model.add(LSTM(output_dim=32 * (i + 1),
+    #                    activation='relu',
+    #                    return_sequences=True
+    #                    ))
 
     for i in range(3):
         model.add(Dense(output_dim=1433,

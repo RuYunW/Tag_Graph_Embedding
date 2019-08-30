@@ -60,5 +60,6 @@ for k in range(1,K+1):  # hop数  K
 
 model = build_model()
 for i in order_set:  # K
-    model.fit(i,y,batch_size=32,epochs=10,verbose=1)
+    for j in i:
+        model.fit(np.array(j),y,batch_size=32,epochs=10,verbose=1)
 
