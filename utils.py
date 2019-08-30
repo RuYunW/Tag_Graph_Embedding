@@ -1,4 +1,7 @@
 import numpy as np
+# from model import *
+from keras.layers import LSTM,Dense,Dropout
+from keras.models import Sequential
 
 def load_data(cites_path = './data/cora.cites',content_path = './data/cora.content'):
     with open(content_path,'r') as f1:
@@ -135,13 +138,13 @@ def h_front_cal(x,cites,content,class_set,h_front):
     return front_code
 
 
-def summ(h,x):
+def summ(h,code_length):
     __ = []
     for i in h:
         if len(i) >= 1:
             __.append(np.sum([ j for j in i],axis=0).tolist())
         else:
-            __.append([0 for _ in range(len(x))])  # 空用0填补
+            __.append([0 for _ in range(code_length)])  # 空用0填补
     # sum each vir_class code within one
     return __
 
@@ -177,6 +180,26 @@ def h_behind_cal(x,cites,content,class_set,h_behind):
         temp_behindcode = []
 
     return behind_code
+
+def build_model():
+    model = Sequential()
+    model.add(LSTM(output_dim=32,
+                   input_shape=(2, 3),
+                   activation='relu',
+                   return_sequences=True))
+    for i in range(3):
+        model.add(LSTM(output_dim=32 * (i + 1),
+                       activation='relu',
+                       return_sequences=True))
+
+    for i in range(3):
+        model.add(Dense(output_dim=256,
+                        activation='relu'))
+        model.add(Dropout(0.5))
+
+    model.compile(loss='mae', optimizer='adam', metrics=['accuracy'])
+    model.summary()
+    return model
 
 
 def Virtualized():
