@@ -52,13 +52,13 @@ for k in range(1,K+1):  # hop数  K
 #     print(len(i))
 # print(len(order_set))
 
+# print(len(y))
+# print(len(order_set))
+# print(len(order_set[0]))
+# print(len(order_set[0][0]))
+# print(len(y[0]))
 
 model = build_model()
 for i in order_set:  # K
-    model.fit(i,y,batch_size=32,epochs=10)
-
-
-
-
-
+    model.fit(i,y,batch_size=32,epochs=10,verbose=1)
 

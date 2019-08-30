@@ -184,16 +184,18 @@ def h_behind_cal(x,cites,content,class_set,h_behind):
 def build_model():
     model = Sequential()
     model.add(LSTM(output_dim=32,
-                   input_shape=(2, 3),
-                   activation='relu',
-                   return_sequences=True))
+                   return_sequences=True,
+                   input_shape=(2708,2866),
+                   activation='relu'
+                   ))
     for i in range(3):
         model.add(LSTM(output_dim=32 * (i + 1),
                        activation='relu',
-                       return_sequences=True))
+                       return_sequences=True
+                       ))
 
     for i in range(3):
-        model.add(Dense(output_dim=256,
+        model.add(Dense(output_dim=1433,
                         activation='relu'))
         model.add(Dropout(0.5))
 
