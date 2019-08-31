@@ -181,13 +181,13 @@ def h_behind_cal(x,cites,content,class_set,h_behind):
 
     return behind_code
 
-def build_model():
+def build_model(K,node_num,code_length):
     model = Sequential()
-    model.add(Embedding(input_dim=2866,output_dim=128,input_length=2866))
+    model.add(Embedding(input_dim=K*node_num,output_dim=256,input_length=2866))
     model.add(LSTM(units=256,
                    # output_dim=128,
                    return_sequences=True,
-                   # input_shape=(2708,1,2866),
+                   input_shape=(K*node_num,1,code_length),
                    # activation='relu'
                    ))
     # for i in range(3):
@@ -195,14 +195,30 @@ def build_model():
     #                    activation='relu',
     #                    return_sequences=True
     #                    ))
+    #
+    # for i in range(3):
+    #     model.add(Dense(output_dim=1433,
+    #                     activation='relu'))
+    #     model.add(Dropout(0.5))
 
-    for i in range(3):
-        model.add(Dense(output_dim=1433,
-                        activation='relu'))
-        model.add(Dropout(0.5))
+    # model.add(LSTM(32, return_sequences=True, stateful=True,
+    #                batch_input_shape=(32, 1, (K*node_num,code_length))))
+    # model.add(LSTM(32, return_sequences=True, stateful=True))
+    # model.add(LSTM(32, stateful=True))
+    # model.add(Dense(4, activation='softmax'))
 
-    model.compile(loss='mae', optimizer='adam', metrics=['accuracy'])
+    # for i in range(3):
+    #     model.add(Dense(output_dim=1433,
+    #                     activation='relu'))
+
+    model.compile(loss='categorical_crossentropy',
+                  optimizer='adam',
+                  metrics=['accuracy'])
+
     model.summary()
+
+    # model.compile(loss='mae', optimizer='adam', metrics=['accuracy'])
+    # model.summary()
     return model
 
 

@@ -14,6 +14,7 @@ order = []  # Create an empty list
 K = 2  # hops
 h = [[] for i in range(K+1)]  # temp matrices
 code_length = 1433
+node_num = 2708
 # print(x[0][0])  # [[0,...,0],[...],...,[...]]
 
 h[0]+=x[:]
@@ -47,19 +48,12 @@ for k in range(1,K+1):  # hop数  K
         temp.append(h_front[k][m]+h_behind[k][m])  # 拼接
     order_set.append(temp)
 
-
-# for i in order_set:
-#     print(len(i))
-# print(len(order_set))
-
-# print(len(y))
-# print(len(order_set))
-# print(len(order_set[0]))
-# print(len(order_set[0][0]))
-# print(len(y[0]))
-
-model = build_model()
+trainX=[]
+trainY = []
+model = build_model(K,M,code_length)
 for i in order_set:  # K
     for j in i:
-        model.fit(np.array(j),y,batch_size=32,epochs=10,verbose=1)
+        trainX.append(j)
+
+model.fit(np.array(trainX),np.array(y),batch_size=32,epochs=10,verbose=1)
 
