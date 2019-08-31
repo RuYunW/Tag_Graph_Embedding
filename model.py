@@ -49,11 +49,12 @@ for k in range(1,K+1):  # hop数  K
     order_set.append(temp)
 
 trainX=[]
-trainY = []
+trainY = y+y
+
 model = build_model(K,M,code_length)
 for i in order_set:  # K
     for j in i:
         trainX.append(j)
 
-model.fit(np.array(trainX),np.array(y),batch_size=32,epochs=10,verbose=1)
+model.fit(np.array(trainX),np.array(trainY),batch_size=32,epochs=10,verbose=1)
 

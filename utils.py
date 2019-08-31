@@ -183,11 +183,11 @@ def h_behind_cal(x,cites,content,class_set,h_behind):
 
 def build_model(K,node_num,code_length):
     model = Sequential()
-    model.add(Embedding(input_dim=K*node_num,output_dim=256,input_length=2866))
-    model.add(LSTM(units=256,
+    model.add(Embedding(input_dim=2708,output_dim=256,input_length=2866))
+    model.add(LSTM(units=1433,
                    # output_dim=128,
-                   return_sequences=True,
-                   input_shape=(K*node_num,1,code_length),
+                   # return_sequences=True,
+                   # input_shape=(K*node_num,code_length),
                    # activation='relu'
                    ))
     # for i in range(3):
