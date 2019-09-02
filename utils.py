@@ -4,12 +4,14 @@ from keras.layers import LSTM,Dense,Dropout,Embedding
 from keras.models import Sequential
 
 def load_data(cites_path = './data/cora.cites',content_path = './data/cora.content'):
+
     with open(content_path,'r') as f1:
         lines = f1.readlines()
+
     x = []
     for i in range(len(lines)):
         x.append(lines[i].split('\t')[0:-1])
-
+    code_length = len(lines[0].split('\t')[1:-1])
     cites = []
     with open(cites_path,'r') as f_cites:
         lines = f_cites.readlines()
@@ -23,7 +25,7 @@ def load_data(cites_path = './data/cora.cites',content_path = './data/cora.conte
         content.append(line.replace('\n','').split('\t'))
 
     class_set = set(np.array(content[:])[:,-1])
-    return x,cites,content,class_set
+    return x,cites,content,class_set,code_length
 # load_data()
 
 # def LSTM():
@@ -183,8 +185,8 @@ def h_behind_cal(x,cites,content,class_set,h_behind):
 
 def build_model(K,node_num,code_length):
     model = Sequential()
-    model.add(Embedding(input_dim=2708,output_dim=256,input_length=2866))
-    model.add(LSTM(units=1433,
+    model.add(Embedding(input_dim=node_num,output_dim=256,input_length=K*code_length))
+    model.add(LSTM(units=code_length,
                    # output_dim=128,
                    # return_sequences=True,
                    # input_shape=(K*node_num,code_length),
@@ -222,8 +224,3 @@ def build_model(K,node_num,code_length):
     return model
 
 
-def Virtualized():
-    pass
-
-def lstm(h):
-    pass
