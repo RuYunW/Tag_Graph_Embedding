@@ -1,6 +1,6 @@
 import numpy as np
 # from model import *
-from keras.layers import LSTM,Dense,Dropout,Embedding
+from keras.layers import LSTM,Dense,Dropout,Embedding,Flatten
 from keras.models import Sequential
 
 def load_data(cites_path = './data/cora.cites',content_path = './data/cora.content'):
@@ -188,20 +188,23 @@ def build_model(K,node_num,code_length):
     model.add(Embedding(input_dim=node_num,output_dim=256,input_length=K*code_length))
     model.add(LSTM(units=code_length,
                    # output_dim=128,
-                   # return_sequences=True,
+                   return_sequences=True,
                    # input_shape=(K*node_num,code_length),
                    # activation='relu'
                    ))
-    # for i in range(3):
-    #     model.add(LSTM(output_dim=32 * (i + 1),
-    #                    activation='relu',
-    #                    return_sequences=True
-    #                    ))
-    #
-    # for i in range(3):
-    #     model.add(Dense(output_dim=1433,
-    #                     activation='relu'))
-    #     model.add(Dropout(0.5))
+    for i in range(3):
+        model.add(LSTM(output_dim=32 * (i + 1),
+                       activation='relu',
+                       return_sequences=True
+                       ))
+    
+    for i in range(3):
+        model.add(Dense(output_dim=code_length,
+                        activation='relu'))
+        model.add(Dropout(0.5))
+
+    model.add(Flatten( ))
+    model.add(Dense(output_dim = code_length,activation='relu'))
 
     # model.add(LSTM(32, return_sequences=True, stateful=True,
     #                batch_input_shape=(32, 1, (K*node_num,code_length))))
