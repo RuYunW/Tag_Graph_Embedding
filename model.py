@@ -9,7 +9,9 @@ from keras.layers import LSTM,Dense,Dropout
 from keras.models import Sequential
 
 # Initialize
-x,cites,content,class_set,code_length = load_data(cites_path = './data/cited.txt',content_path = './data/content.txt')
+# x,cites,content,class_set,code_length = load_data(cites_path = './data/cited.txt',content_path = './data/content.txt')
+x,cites,content,class_set,code_length = load_data()
+
 order = []  # Create an empty list
 K = 2  # hops
 h = [[] for i in range(K+1)]  # temp matrices

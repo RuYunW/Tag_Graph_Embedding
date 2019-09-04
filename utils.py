@@ -183,28 +183,44 @@ def h_behind_cal(x,cites,content,class_set,h_behind):
 
     return behind_code
 
+
+
+
+
 def build_model(K,node_num,code_length):
     model = Sequential()
     model.add(Embedding(input_dim=node_num,output_dim=256,input_length=K*code_length))
-    model.add(LSTM(units=code_length,
-                   # output_dim=128,
-                   return_sequences=True,
-                   # input_shape=(K*node_num,code_length),
-                   # activation='relu'
-                   ))
-    for i in range(3):
-        model.add(LSTM(output_dim=32 * (i + 1),
-                       activation='relu',
-                       return_sequences=True
-                       ))
-    
-    for i in range(3):
-        model.add(Dense(output_dim=code_length,
-                        activation='relu'))
-        model.add(Dropout(0.5))
 
-    model.add(Flatten( ))
-    model.add(Dense(output_dim = code_length,activation='relu'))
+    # keras.layers.recurrent.LSTM(units, activation='tanh', recurrent_activation='hard_sigmoid', use_bias=True,
+    # kernel_initializer='glorot_uniform', recurrent_initializer='orthogonal', bias_initializer='zeros',
+    # unit_forget_bias=True, kernel_regularizer=None, recurrent_regularizer=None, bias_regularizer=None,
+    # activity_regularizer=None, kernel_constraint=None, recurrent_constraint=None, bias_constraint=None, dropout=0.0,
+    # recurrent_dropout=0.0)
+
+    model.add(LSTM(
+                   units=code_length,
+                   # 128,
+                   # output_dim=128,
+                   # return_sequences=True,
+                   # stateful=True,
+                   # output_dim = 32,
+                   # batch_input_shape=(32, 1, 3),
+                   # input_shape=(node_num,5,2*code_length),
+                   activation='relu',
+                   ))
+    # for i in range(3):
+    #     model.add(LSTM(output_dim=32 * (i + 1),
+    #                    activation='relu',
+    #                    return_sequences=True
+    #                    ))
+    #
+    # for i in range(3):
+    #     model.add(Dense(output_dim=code_length,
+    #                     activation='relu'))
+    #     model.add(Dropout(0.5))
+
+    # model.add(Flatten( ))
+    # model.add(Dense(output_dim = code_length,activation='relu'))
 
     # model.add(LSTM(32, return_sequences=True, stateful=True,
     #                batch_input_shape=(32, 1, (K*node_num,code_length))))
