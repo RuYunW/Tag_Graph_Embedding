@@ -187,9 +187,9 @@ def h_behind_cal(x,cites,content,class_set,h_behind):
 
 
 
-def build_model(K,node_num,code_length):
+def build_model(nodenum,timestep,code_length):
     model = Sequential()
-    model.add(Embedding(input_dim=node_num,output_dim=256,input_length=K*code_length))
+    # model.add(Embedding(input_dim=node_num,output_dim=256,input_length=K*code_length))
 
     # keras.layers.recurrent.LSTM(units, activation='tanh', recurrent_activation='hard_sigmoid', use_bias=True,
     # kernel_initializer='glorot_uniform', recurrent_initializer='orthogonal', bias_initializer='zeros',
@@ -199,47 +199,18 @@ def build_model(K,node_num,code_length):
 
     model.add(LSTM(
                    units=code_length,
-                   # 128,
-                   # output_dim=128,
-                   # return_sequences=True,
-                   # stateful=True,
-                   # output_dim = 32,
-                   # batch_input_shape=(32, 1, 3),
-                   # input_shape=(node_num,5,2*code_length),
+                   return_sequences=True,
+                   batch_input_shape=(nodenum, timestep, code_length),
                    activation='relu',
                    ))
-    # for i in range(3):
-    #     model.add(LSTM(output_dim=32 * (i + 1),
-    #                    activation='relu',
-    #                    return_sequences=True
-    #                    ))
-    #
-    # for i in range(3):
-    #     model.add(Dense(output_dim=code_length,
-    #                     activation='relu'))
-    #     model.add(Dropout(0.5))
-
-    # model.add(Flatten( ))
-    # model.add(Dense(output_dim = code_length,activation='relu'))
-
-    # model.add(LSTM(32, return_sequences=True, stateful=True,
-    #                batch_input_shape=(32, 1, (K*node_num,code_length))))
-    # model.add(LSTM(32, return_sequences=True, stateful=True))
-    # model.add(LSTM(32, stateful=True))
-    # model.add(Dense(4, activation='softmax'))
-
-    # for i in range(3):
-    #     model.add(Dense(output_dim=1433,
-    #                     activation='relu'))
-
+    model.add(Dense(output_dim=code_length, activation='relu'))
+    model.add(LSTM(nodenum, return_sequences=True))
+    model.add(LSTM(nodenum))
+    model.add(Dense(code_length, activation='relu'))
     model.compile(loss='categorical_crossentropy',
                   optimizer='adam',
                   metrics=['accuracy'])
-
     model.summary()
-
-    # model.compile(loss='mae', optimizer='adam', metrics=['accuracy'])
-    # model.summary()
     return model
 
 
