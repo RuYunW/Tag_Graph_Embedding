@@ -1,13 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0b0be2a4-14c0-4ebe-b396-3c746b56f0e8" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ceui.h5" beforeDir="false" afterPath="$PROJECT_DIR$/ceui.h5" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ceui.py" beforeDir="false" afterPath="$PROJECT_DIR$/ceui.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model.py" beforeDir="false" afterPath="$PROJECT_DIR$/model.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils.py" afterDir="false" />
-    </list>
+    <list default="true" id="0b0be2a4-14c0-4ebe-b396-3c746b56f0e8" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,7 +16,7 @@
             <entry file="file://$PROJECT_DIR$/model.py">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="129">
-                  <caret line="87" lean-forward="true" selection-start-line="87" selection-end-line="87" />
+                  <caret line="18" column="20" lean-forward="true" selection-start-line="18" selection-start-column="20" selection-end-line="18" selection-end-column="20" />
                   <folding>
                     <element signature="e#50#69#0" expanded="true" />
                   </folding>
@@ -120,20 +114,7 @@
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
-    <panes>
-      <pane id="Scope" />
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="Tag_Graph_Embedding" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Tag_Graph_Embedding" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-    </panes>
+    <panes />
   </component>
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
@@ -294,7 +275,7 @@
       <workItem from="1567578182923" duration="2501000" />
       <workItem from="1567580775574" duration="1268000" />
       <workItem from="1567594811373" duration="8018000" />
-      <workItem from="1567661548839" duration="7002000" />
+      <workItem from="1567661548839" duration="7121000" />
     </task>
     <task id="LOCAL-00001" summary="向量化编程">
       <created>1566574350608</created>
@@ -443,11 +424,18 @@
       <option name="project" value="LOCAL" />
       <updated>1567598584932</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="不知道为啥，我电脑跑不了">
+      <created>1567676040634</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1567676040634</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="112978000" />
+    <option name="totallyTimeSpent" value="113097000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1295" height="735" extended-state="6" />
@@ -501,7 +489,8 @@
     <MESSAGE value="我觉得应该没有bug了" />
     <MESSAGE value="显存不足" />
     <MESSAGE value="add file ceui and ran out it" />
-    <option name="LAST_COMMIT_MESSAGE" value="add file ceui and ran out it" />
+    <MESSAGE value="不知道为啥，我电脑跑不了" />
+    <option name="LAST_COMMIT_MESSAGE" value="不知道为啥，我电脑跑不了" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Tag_Graph_Embedding$execute.coverage" NAME="execute Coverage Results" MODIFIED="1567253333626" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="D:/Anaconda/Lib/site-packages/tensorflow/python/eager" />
@@ -568,7 +557,7 @@
     <entry file="file://$PROJECT_DIR$/model.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="129">
-          <caret line="87" lean-forward="true" selection-start-line="87" selection-end-line="87" />
+          <caret line="18" column="20" lean-forward="true" selection-start-line="18" selection-start-column="20" selection-end-line="18" selection-end-column="20" />
           <folding>
             <element signature="e#50#69#0" expanded="true" />
           </folding>
