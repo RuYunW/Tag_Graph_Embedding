@@ -84,5 +84,5 @@ model = build_model(node_num,max_col,code_length)
 #     for j in i:
 #         trainX.append(j)
 
-model.fit(trainX,trainY,batch_size=node_num,epochs=10,verbose=1)
+model.fit(trainX,trainY,epochs=100,verbose=1)
 

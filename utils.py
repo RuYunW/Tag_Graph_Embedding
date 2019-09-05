@@ -207,6 +207,11 @@ def build_model(nodenum,timestep,code_length):
     model.add(LSTM(nodenum, return_sequences=True))
     model.add(LSTM(nodenum))
     model.add(Dense(code_length, activation='relu'))
+    model.add(Dropout(0.5))
+    model.add(Dense(code_length,activation='relu'))
+    model.add(Dropout(0.5))
+    model.add(Dense(code_length,activation='relu'))
+    model.add(Dropout(0.5))
     model.compile(loss='categorical_crossentropy',
                   optimizer='adam',
                   metrics=['accuracy'])
