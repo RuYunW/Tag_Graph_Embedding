@@ -1,7 +1,9 @@
 import numpy as np
 # from model import *
-from keras.layers import LSTM,Dense,Dropout,Embedding,Flatten
+from keras.layers import LSTM,Dense,Dropout,Embedding,Flatten,ConvLSTM2D
 from keras.models import Sequential
+from keras.optimizers import Adam
+from keras.layers.convolutional import Conv1D,MaxPooling1D
 
 def load_data(cites_path = './data/cora.cites',content_path = './data/cora.content'):
 
@@ -197,23 +199,28 @@ def build_model(nodenum,timestep,code_length):
     # activity_regularizer=None, kernel_constraint=None, recurrent_constraint=None, bias_constraint=None, dropout=0.0,
     # recurrent_dropout=0.0)
 
+    model.add(Conv1D(filters = 32,kernel_size = 3,padding = 'same',activation = 'relu',batch_input_shape = (nodenum,timestep,code_length)))
+    model.add(MaxPooling1D(pool_size = 2))
     model.add(LSTM(
-                   units=code_length,
-                   return_sequences=True,
-                   batch_input_shape=(nodenum, timestep, code_length),
-                   activation='relu',
+                   units=256,
+                   #return_sequences=True,
+                   #batch_input_shape=(nodenum, timestep, code_length),
+                   #activation='relu',
                    ))
-    model.add(Dense(output_dim=code_length, activation='relu'))
-    model.add(LSTM(nodenum, return_sequences=True))
-    model.add(LSTM(nodenum))
-    model.add(Dense(code_length, activation='relu'))
-    model.add(Dropout(0.5))
-    model.add(Dense(code_length,activation='relu'))
-    model.add(Dropout(0.5))
-    model.add(Dense(code_length,activation='relu'))
-    model.add(Dropout(0.5))
+    model.add(Dropout(0.2))
+    model.add(Dense(units = code_length,activation = 'softmax'))
+    #model.add(Dense(output_dim=code_length, activation='relu'))
+    #model.add(Dropout(0.5))
+    #model.add(LSTM(nodenum, return_sequences=True))
+    #model.add(LSTM(code_length,return_sequences = True))
+    #model.add(LSTM(code_length))
+    
+    #model.add(Dense(code_length,activation='relu'))
+    #model.add(Dropout(0.2))
+    #model.add(Dense(code_length,activation='softmax'))
+    # model.add(Dropout(0.5))
     model.compile(loss='categorical_crossentropy',
-                  optimizer='adam',
+                  optimizer=Adam(lr = 0.01),
                   metrics=['accuracy'])
     model.summary()
     return model
